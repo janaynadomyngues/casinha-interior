@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Casinha Interior 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #fdf0f3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* FLORZINHAS FLUTUANTES */
+.flores-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.flor-float {
+  position: absolute;
+  font-size: 22px;
+  opacity: 0.18;
+  animation: floatFlor linear infinite;
+}
+
+@keyframes floatFlor {
+  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.18; }
+  90% { opacity: 0.18; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== TELA INÍCIO ===== */
+#tela-inicio {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-flor {
+  font-size: 70px;
+  animation: floatLogo 3.5s ease-in-out infinite;
+  display: block;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 8px 24px rgba(192,82,122,0.25));
+}
+
+@keyframes floatLogo {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: #6b1f3a;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(107,31,58,0.12);
+}
+
+.brand-slogan {
+  font-size: 12px;
+  color: #c9a0ae;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 44px;
+  font-style: italic;
+}
+
+.divisor {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e8b4c8, transparent);
+  margin: 0 auto 32px;
+}
+
+.menu-titulo {font-weight: 700;
+  font-size: 13px;
+  color: #6b1f3a;
+  margin-bottom: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.menu-botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.menu-btn {
+  padding: 17px 24px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.menu-btn:hover { transform: translateY(-3px) scale(1.02); }
+.menu-btn:active { transform: scale(0.97); }
+
+.btn-bomdia {
+  background: linear-gradient(135deg, #f9e07a, #f5c842);
+  color: #5c3a00;
+  box-shadow: 0 6px 24px rgba(245,200,66,0.4);
+}
+
+.btn-boanoite {
+  background: linear-gradient(135deg, #b59de8, #8b6fd4);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(139,111,212,0.4);
+}
+
+.btn-reflexao {
+  background: linear-gradient(135deg, #f0a0c0, #d45c85);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(212,92,133,0.4);
+}
+
+.btn-historico {
+  background: transparent;
+  border: 1.5px solid #e8b4c8;
+  color: #8a3050;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.2s;
+  width: 100%;
+  max-width: 300px;
+}
+.btn-historico:hover { background: rgba(232,180,200,0.18); transform: translateY(-2px); }
+
+/* ===== TELA CHAT ===== */
+#tela-chat {
+  display: none;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.chat-header {
+  padding: 14px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(224,180,200,0.3);
+  background: rgba(253,240,243,0.92);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.btn-voltar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #f0c8d8;
+  background: transparent;
+  color: #8a3050;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.btn-voltar:hover { background: rgba(240,200,216,0.3); }
+
+.chat-header-info { flex: 1; }
+
+.chat-header-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: #6b1f3a;
+}
+
+.chat-header-sub {
+  font-size: 10px;
+  color: #c9a0ae;
+  letter-spacing: 0.05em;
+}
+
+.chat-tipo-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge-bomdia { background: #fff3cd; color: #7a4e00; }
+.badge-boanoite { background: #ede0ff; color: #5a3a9a; }
+.badge-reflexao { background: #ffe0ec; color: #8a2050; }
+
+.chat-msgs {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  min-height: 400px;
+}
+
+.bubble {
+  max-width: 86%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  animation: fadeUp 0.3s ease;
+  white-space: pre-wrap;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.bubble.agent {
+  background: #fff;
+  color: #5a3a47;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 14px rgba(107,31,58,0.09);
+  align-self: flex-start;
+  border-left: 3px solid #e8b4c8;
+}
+
+.bubble.user {
+  background: linear-gradient(135deg, #d45c85, #8a3050);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+  box-shadow: 0 2px 12px rgba(138,48,80,0.3);
+}
+
+.bubble.typing {
+  background: #fff;
+  color: #c0a0b0;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 14px rgba(107,31,58,0.09);
+  align-self: flex-start;
+  border-left: 3px solid #e8b4c8;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.dots span {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #e0a0c0;
+  margin: 0 2px;
+  animation: bounce 1.2s infinite;
+}
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%,80%,100% { transform:translateY(0); }
+  40% { transform:translateY(-7px); }
+}
+
+.btn-salvar {
+  margin: 4px 12px 0 auto;
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1.5px solid #e8b4c8;
+  background: transparent;
+  color: #8a3050;
+  font-size: 12px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+.btn-salvar:hover { background: rgba(232,180,200,0.2); }
+.btn-salvar.visivel { display: flex; }
+
+.input-area {
+  padding: 10px 12px 20px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  background: rgba(253,240,243,0.9);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(224,180,200,0.3);
+}
+
+.input-area textarea {
+  flex: 1;
+  border: 1.5px solid #f0c8d8;
+  border-radius: 22px;
+  padding: 11px 18px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: #5a3a47;
+  resize: none;
+  outline: none;
+  background: #fff;
+  min-height: 44px;
+  max-height: 110px;
+  line-height: 1.5;
+  transition: border-color 0.2s;
+}
+.input-area textarea:focus { border-color: #d45c85; }
+.input-area textarea::placeholder { color: #d4a0b5; }
+
+.send-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d45c85, #8a3050);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+  transition: transform 0.15s;
+  box-shadow: 0 3px 14px rgba(138,48,80,0.35);
+}
+.send-btn:hover { transform: scale(1.07); }
+.send-btn:active { transform: scale(0.96); }
+.send-btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+
+/* ===== HISTÓRICO ===== */
+#tela-historico {
+  display: none;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.hist-header {
+  padding: 14px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(224,180,200,0.3);
+  background: rgba(253,240,243,0.92);
+  backdrop-filter: blur(12px);
+}
+
+.hist-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #6b1f3a;
+}
+
+.hist-lista {
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.hist-vazio {
+  text-align: center;
+  padding: 60px 20px;
+  color: #d4a0b5;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.hist-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 0.5px solid #f0c8d8;
+  padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(107,31,58,0.07);
+}
+
+.hist-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hist-card-tipo {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.hist-card-data { font-size: 11px; color: #d4a0b5; }
+
+.hist-card-texto {
+  font-size: 13.5px;
+  color: #5a3a47;
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hist-card-btn {
+  margin-top: 10px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #e8b4c8;
+  background: transparent;
+  color: #8a3050;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hist-card-btn:hover { background: rgba(232,180,200,0.2); }
+</style>
+</head>
+<body>
+
+<!-- FLORZINHAS FLUTUANTES -->
+<div class="flores-bg" id="flores-bg"></div>
+
+<!-- TELA INÍCIO -->
+<div id="tela-inicio">
+  <span class="logo-flor">🌸</span>
+  <div class="brand-name">Minha Casinha Interior</div>
+  <div class="brand-slogan">Aqui a sua alma respira</div>
+  <div class="divisor"></div>
+  <p class="menu-titulo">O que você quer criar hoje?</p>
+  <div class="menu-botoes">
+    <button class="menu-btn btn-bomdia" onclick="iniciarChat('bomdia')">☀️ Bom dia</button>
+    <button class="menu-btn btn-boanoite" onclick="iniciarChat('boanoite')">🌙 Boa noite</button>
+    <button class="menu-btn btn-reflexao" onclick="iniciarChat('reflexao')">🌸 Reflexão</button>
+  </div>
+  <button class="btn-historico" onclick="verHistorico()">📖 Ver histórico de roteiros</button>
+</div>
+
+<!-- TELA CHAT -->
+<div id="tela-chat">
+  <div class="chat-header">
+    <button class="btn-voltar" onclick="voltarInicio()">←</button>
+    <div class="chat-header-info">
+      <div class="chat-header-titulo">Minha Casinha Interior</div>
+      <div class="chat-header-sub">Aqui a sua alma respira 🌸</div>
+    </div>
+    <span id="chat-badge" class="chat-tipo-badge"></span>
+  </div>
+  <div class="chat-msgs" id="chat"></div>
+  <button class="btn-salvar" id="btn-salvar" onclick="salvarRoteiro()">💾 Salvar roteiro</button>
+  <div class="input-area">
+    <textarea id="userInput" placeholder="Digite aqui, florzinha... 🌸" rows="1"></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<!-- TELA HISTÓRICO -->
+<div id="tela-historico">
+  <div class="hist-header">
+    <button class="btn-voltar" onclick="voltarInicio()">←</button>
+    <div class="hist-titulo">📖 Histórico de Roteiros</div>
+  </div>
+  <div class="hist-lista" id="hist-lista"></div>
+</div>
+
+<script>
+const API_KEY = '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';
+
+const SYSTEM_PROMPT = `Você é um roteirista especialista em conteúdos emocionais, acolhedores e motivacionais para mulheres. Sua missão é criar roteiros curtos para Reels, TikTok e Shorts que façam mulheres se sentirem acolhidas, fortalecidas e emocionalmente abraçadas.
+
+A comunicação deve soar como "uma mulher falando com outra mulher." Nunca como pregadora distante, coach agressiva, autoridade superior, ou alguém julgando.
+
+IDENTIDADE DA MARCA:
+Nome: Minha Casinha Interior 🌸
+Slogan: "Aqui a sua alma respira."
+
+PÚBLICO: Mulheres que carregam muitas responsabilidades, tentam ser fortes o tempo todo, precisam de acolhimento, buscando paz e força emocional.
+
+MÉTODO DA CASINHA 🌸:
+1. ACOLHE — conecta emocionalmente ("Bom dia, florzinha…", "Respira fundo…")
+2. FIRMA — esperança, força emocional, paz, versículo quando fizer sentido
+3. ENVIA — acolhimento + CTA emocional ("Vai com fé, florzinha.", "Manda pra alguém que precisava ouvir isso hoje.")
+
+REGRAS: roteiros entre 20-35 segundos, frases curtas, prende nos primeiros 3 segundos.
+
+VOCABULÁRIO: florzinha, paz, esperança, abrigo, força, luz, café, coragem, vai com fé, respira fundo, recomeço, caminhada.
+
+PROIBIDO: agressividade, condenação, culpa, religiosidade pesada, tom frio, pessimismo.
+
+REGRA FINAL 🌸 — depois de gerar qualquer roteiro, SEMPRE finalize perguntando: "O roteiro está aprovado, florzinha? Ou você quer ajustar algum detalhe?" 🌸`;
+
+const BOAS_VINDAS = {
+  bomdia: `Bom dia, florzinha! ☀️🌸\n\nQue bom te ver por aqui!\n\nVamos criar um roteiro de bom dia cheio de acolhimento e esperança.\n\nVocê já tem uma mensagem ou versículo em mente? Ou quer que eu sugira algo lindo para hoje? ✨`,
+  boanoite: `Boa noite, florzinha! 🌙🌸\n\nQue bom que você veio descansar um pouquinho por aqui.\n\nVamos criar um roteiro de boa noite cheio de paz e aconchego.\n\nVocê já tem uma mensagem ou versículo? Ou prefere que eu escolha algo especial? 🕯️`,
+  reflexao: `Oi, florzinha! 🌸\n\nQue lindo você querer criar uma reflexão para tocar corações.\n\nVamos juntas criar algo que faça outras mulheres respirarem fundo e sentirem esperança.\n\nVocê já tem uma mensagem, tema ou versículo? Ou quer que eu sugira? ☕`
+};
+
+const TIPOS = {
+  bomdia:   { label: '☀️ Bom dia',   badgeClass: 'badge-bomdia' },
+  boanoite: { label: '🌙 Boa noite', badgeClass: 'badge-boanoite' },
+  reflexao: { label: '🌸 Reflexão',  badgeClass: 'badge-reflexao' }
+};
+
+let history = [], tipoAtual = '', ultimoRoteiro = '';
+
+// FLORZINHAS FLUTUANTES
+function criarFlores() {
+  const container = document.getElementById('flores-bg');
+  const flores = ['🌸','🌼'];
+  for (let i = 0; i < 18; i++) {
+    const f = document.createElement('span');
+    f.className = 'flor-float';
+    f.textContent = flores[Math.floor(Math.random() * flores.length)];
+    f.style.left = Math.random() * 100 + '%';
+    f.style.fontSize = (14 + Math.random() * 18) + 'px';
+    f.style.animationDuration = (12 + Math.random() * 20) + 's';
+    f.style.animationDelay = (Math.random() * 20) + 's';
+    f.style.opacity = (0.08 + Math.random() * 0.15).toString();
+    container.appendChild(f);
+  }
+}
+
+function mostrarTela(id) {
+  ['tela-inicio','tela-chat','tela-historico'].forEach(t => {
+    document.getElementById(t).style.display = 'none';
+  });
+  document.getElementById(id).style.display = 'flex';
+}
+
+function iniciarChat(tipo) {
+  tipoAtual = tipo;
+  history = [];
+  ultimoRoteiro = '';
+  document.getElementById('chat').innerHTML = '';
+  document.getElementById('btn-salvar').classList.remove('visivel');
+  const badge = document.getElementById('chat-badge');
+  badge.textContent = TIPOS[tipo].label;
+  badge.className = 'chat-tipo-badge ' + TIPOS[tipo].badgeClass;
+  mostrarTela('tela-chat');
+  const bv = BOAS_VINDAS[tipo];
+  addBubble(bv, 'agent');
+  history.push({ role: 'assistant', content: bv });
+}
+
+function voltarInicio() { mostrarTela('tela-inicio'); }
+
+function verHistorico() {
+  mostrarTela('tela-historico');
+  renderHistorico();
+}
+
+function addBubble(text, role) {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'bubble ' + role;
+  div.innerText = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function addTyping() {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'bubble typing';
+  div.id = 'typing';
+  div.innerHTML = 'digitando <span class="dots"><span></span><span></span><span></span></span>';
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const btn = document.getElementById('sendBtn');
+  const text = input.value.trim();
+  if (!text) return;
+
+  addBubble(text, 'user');
+  history.push({ role: 'user', content: text });
+  input.value = '';
+  input.style.height = 'auto';
+  btn.disabled = true;
+  addTyping();
+
+  try {
+    const system = SYSTEM_PROMPT + `\n\nTipo de roteiro atual: ${TIPOS[tipoAtual].label}.`;
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': API_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: system,
+        messages: history
+      })
+    });
+
+    const data = await res.json();
+    removeTyping();
+
+    if (data.error) { addBubble('Ops: ' + data.error.message, 'agent'); btn.disabled = false; return; }
+
+    const reply = data.content[0].text;
+    history.push({ role: 'assistant', content: reply });
+    addBubble(reply, 'agent');
+
+    if (reply.length > 100) {
+      ultimoRoteiro = reply;
+      document.getElementById('btn-salvar').classList.add('visivel');
+    }
+  } catch(e) {
+    removeTyping();
+    addBubble('Erro de conexão. Tente novamente 🌸', 'agent');
+  }
+  btn.disabled = false;
+}
+
+function salvarRoteiro() {
+  if (!ultimoRoteiro) return;
+  const hist = JSON.parse(localStorage.getItem('casinha_historico') || '[]');
+  hist.unshift({
+    tipo: tipoAtual,
+    texto: ultimoRoteiro,
+    data: new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' })
+  });
+  localStorage.setItem('casinha_historico', JSON.stringify(hist.slice(0, 50)));
+  document.getElementById('btn-salvar').classList.remove('visivel');
+  addBubble('Roteiro salvo com sucesso! 💾🌸', 'agent');
+}
+
+function renderHistorico() {
+  const lista = document.getElementById('hist-lista');
+  const hist = JSON.parse(localStorage.getItem('casinha_historico') || '[]');
+  if (hist.length === 0) {
+    lista.innerHTML = '<div class="hist-vazio">🌸<br><br>Ainda não há roteiros salvos.<br>Crie um roteiro e salve para aparecer aqui!</div>';
+    return;
+  }
+  lista.innerHTML = hist.map((r, i) => `
+    <div class="hist-card">
+      <div class="hist-card-top">
+        <span class="hist-card-tipo ${TIPOS[r.tipo]?.badgeClass || 'badge-reflexao'}">${TIPOS[r.tipo]?.label || '🌸 Roteiro'}</span>
+        <span class="hist-card-data">${r.data}</span>
+      </div>
+      <div class="hist-card-texto">${r.texto}</div>
+      <button class="hist-card-btn" onclick="copiarRoteiro(${i})">📋 Copiar roteiro</button>
+    </div>
+  `).join('');
+}
+
+function copiarRoteiro(i) {
+  const hist = JSON.parse(localStorage.getItem('casinha_historico') || '[]');
+  navigator.clipboard.writeText(hist[i].texto).then(() => alert('Roteiro copiado! 🌸'));
+}
+
+document.getElementById('userInput').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 110) + 'px';
+});
+
+document.getElementById('userInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+
+criarFlores();
+</script>
+</body>
+</html>
